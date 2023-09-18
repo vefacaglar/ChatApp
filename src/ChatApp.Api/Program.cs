@@ -2,6 +2,7 @@ using ChatApp.Domain;
 using ChatApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ChatApp.Domain.Database.ChatDb;
+using ChatApp.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<ChatDbContext>(options => options.UseSqlServer(con
 
 builder.Services.AddDomain();
 builder.Services.AddInfrastructure();
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using ChatApp.Domain;
+﻿using ChatApp.Application.Chat;
+using ChatApp.Domain;
 using ChatApp.Domain.Chat.Request;
 using ChatApp.Domain.Chat.Response;
 using MediatR;
@@ -20,9 +21,13 @@ namespace ChatApp.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ResultResponse<CreateChatRoomResponse>> CreateChatRoomAsync(CreateChatRoomRequest request)
+        public async Task<ActionResult<ResultResponse<CreateChatRoomResponse>>> CreateChatRoomAsync(CreateChatRoomRequest request)
         {
-            return Ok();
+            var command = new CreateChatRoomCommand(request);
+
+            var result = await _sender.Send(command);
+
+            return Ok(result);
         }
     }
 }
