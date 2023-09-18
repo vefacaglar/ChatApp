@@ -16,7 +16,7 @@ namespace ChatApp.Domain.Database.ChatDb
         }
 
         public virtual DbSet<ChatRoom> ChatRoom { get; set; }
-        public virtual DbSet<EventStore> EventStore { get; set; }
+        public virtual DbSet<EventLog> EventLog { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

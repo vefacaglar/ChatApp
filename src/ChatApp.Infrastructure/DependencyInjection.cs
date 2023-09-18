@@ -11,6 +11,7 @@ namespace ChatApp.Infrastructure
             services.AddScoped<IUnitOfWork, ChatDbUnitOfWork>();
             services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddTransient<IMsSqlDbConnectionFactory, MsSqlConnectionFactory>();
+            services.AddTransient<IEventStore, SqlEventStore>();
             return services;
         }
     }

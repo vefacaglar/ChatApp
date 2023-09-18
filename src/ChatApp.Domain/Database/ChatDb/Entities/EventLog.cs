@@ -4,14 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChatApp.Domain.Database.ChatDb.Entities
 {
-    public class EventStore : IEntity
+    public class EventLog : IEntity
     {
         public long Id { get; set; }
 
-        [MaxLength(100)]
-        public string Code { get; set; }
-
-        [MaxLength(50)]
+        [MaxLength(200)]
         public string Type { get; set; }
 
         [Column(TypeName = "text")]
