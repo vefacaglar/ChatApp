@@ -1,5 +1,7 @@
-﻿using ChatApp.Domain.Database.ChatDb;
-using ChatApp.Domain.Database.ChatDb.Entities;
+﻿using ChatApp.Domain;
+using ChatApp.Domain.Chat.Request;
+using ChatApp.Domain.Chat.Response;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.Api.Controllers
@@ -8,13 +10,17 @@ namespace ChatApp.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ChatController : ControllerBase
     {
+        ISender _sender;
+
         public ChatController(
+            ISender sender
             )
         {
+            _sender = sender;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Test()
+        [HttpPost]
+        public ActionResult<ResultResponse<CreateChatRoomResponse>> CreateChatRoomAsync(CreateChatRoomRequest request)
         {
             return Ok();
         }
