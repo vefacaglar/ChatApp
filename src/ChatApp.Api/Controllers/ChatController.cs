@@ -2,6 +2,7 @@
 using ChatApp.Domain;
 using ChatApp.Domain.Chat.Request;
 using ChatApp.Domain.Chat.Response;
+using ChatApp.Infrastructure.IoC;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

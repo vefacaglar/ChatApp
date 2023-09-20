@@ -5,6 +5,10 @@ using ChatApp.Domain.Database.ChatDb;
 using ChatApp.Application;
 using ChatApp.Application.EventBus;
 using RabbitMQ.Client;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using ChatApp.Infrastructure.IoC;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,27 +25,15 @@ builder.Services.AddDomain();
 builder.Services.AddInfrastructure();
 builder.Services.AddApplication();
 
-builder.Services.AddSingleton(sp =>
-{
-    var logger = sp.GetRequiredService<ILogger<RabbitMqPersistentConnection>>();
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-    var factory = new ConnectionFactory()
-    {
-        HostName = configuration["ConnectionStrings:EventBus:Connection"]
-    };
-
-    if (!string.IsNullOrEmpty(configuration["ConnectionStrings:EventBus:UserName"]))
-    {
-        factory.UserName = configuration["ConnectionStrings:EventBus:UserName"];
-    }
-
-    if (!string.IsNullOrEmpty(configuration["ConnectionStrings:EventBus:Password"]))
-    {
-        factory.Password = configuration["ConnectionStrings:EventBus:Password"];
-    }
-
-    return new RabbitMqPersistentConnection(factory);
-});
+builder.Host.ConfigureContainer<ContainerBuilder>(
+    builder => builder
+        .RegisterModule(new CommandModule())
+        .RegisterModule(new EventModule())
+        .RegisterModule(new InfrastructureModule())
+        .RegisterModule(new QueryModule())
+    );
 
 var app = builder.Build();
 
@@ -60,6 +52,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseRabbitListener();
+ConfigureEventBus(app);
 
 app.Run();
+
+
+void ConfigureEventBus(IApplicationBuilder app)
+{
+    var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+}
