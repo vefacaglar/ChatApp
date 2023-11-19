@@ -3,12 +3,9 @@ using ChatApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ChatApp.Domain.Database.ChatDb;
 using ChatApp.Application;
-using ChatApp.Application.EventBus;
-using RabbitMQ.Client;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using ChatApp.Infrastructure.IoC;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,7 +52,6 @@ app.MapControllers();
 ConfigureEventBus(app);
 
 app.Run();
-
 
 void ConfigureEventBus(IApplicationBuilder app)
 {
