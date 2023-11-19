@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Infrastructure.Command
+﻿namespace ChatApp.Application.Command
 {
     public interface ICommandHandler
     {

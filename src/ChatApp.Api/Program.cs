@@ -5,7 +5,7 @@ using ChatApp.Domain.Database.ChatDb;
 using ChatApp.Application;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
-using ChatApp.Infrastructure.IoC;
+using ChatApp.Application.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 

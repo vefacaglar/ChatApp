@@ -1,50 +1,51 @@
-﻿using ChatApp.Domain;
-using ChatApp.Domain.Chat.Request;
-using ChatApp.Domain.Chat.Response;
-using ChatApp.Domain.Database.ChatDb.Entities;
+﻿using ChatApp.Domain.Database.ChatDb.Entities;
+using ChatApp.Application.Command;
 using ChatApp.Infrastructure;
-using MediatR;
 
 namespace ChatApp.Application.Chat
 {
-    public class CreateChatRoomCommand : IRequest<ResultResponse<CreateChatRoomResponse>>
+    public class CreateChatRoomCommand : ICommand<CreateChatRoomCommandResult>
     {
         public string Name { get; set; }
 
-        public CreateChatRoomCommand(CreateChatRoomRequest request)
+        public CreateChatRoomCommand()
         {
-            Name = request.Name;
+        }
+    }
+
+    public class CreateChatRoomCommandResult : CommandResult
+    {
+        public string Code { get; set; }
+    }
+
+    public class CreateChatRoomCommandHandler : ICommandHandler<CreateChatRoomCommand, CreateChatRoomCommandResult>
+    {
+        private readonly IUnitOfWork _uow;
+
+        public CreateChatRoomCommandHandler(
+            IUnitOfWork uow
+            )
+        {
+            _uow = uow;
         }
 
-        internal sealed class CreateChatRoomCommandHandler : IRequestHandler<CreateChatRoomCommand, ResultResponse<CreateChatRoomResponse>>
+        public async Task<CreateChatRoomCommandResult> Handle(CreateChatRoomCommand command)
         {
-            private readonly IUnitOfWork _uow;
-
-            public CreateChatRoomCommandHandler(
-                IUnitOfWork uow
-                )
+            var newRoom = new ChatRoom()
             {
-                _uow = uow;
-            }
+                Name = command.Name,
+                CreatedAt = DateTime.UtcNow,
+            };
 
-            public async Task<ResultResponse<CreateChatRoomResponse>> Handle(CreateChatRoomCommand request, CancellationToken cancellationToken)
+            var repository = _uow.GetRepository<ChatRoom>();
+            repository.Add(newRoom);
+
+            await _uow.SaveChangesAsync();
+
+            return new CreateChatRoomCommandResult
             {
-                var newRoom = new ChatRoom()
-                {
-                    Name = request.Name,
-                    CreatedAt = DateTime.UtcNow,
-                };
-
-                var repository = _uow.GetRepository<ChatRoom>();
-                repository.Add(newRoom);
-
-                await _uow.SaveChangesAsync();
-
-                return new ResultResponse<CreateChatRoomResponse>(new CreateChatRoomResponse
-                {
-                    Code = newRoom.Id.ToString(),
-                });
-            }
+                Code = newRoom.Id.ToString(),
+            };
         }
     }
 }

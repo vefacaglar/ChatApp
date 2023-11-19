@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace ChatApp.Infrastructure.Command
+namespace ChatApp.Application.Command
 {
     public class CommandDispatcher : ICommandDispatcher
     {

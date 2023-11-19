@@ -1,8 +1,9 @@
 ﻿using Autofac;
-using ChatApp.Infrastructure.EventBus;
+using ChatApp.Application.EventBus;
+using ChatApp.Infrastructure;
 using RabbitMQ.Client;
 
-namespace ChatApp.Infrastructure.IoC
+namespace ChatApp.Application.IoC
 {
     public class InfrastructureModule : Autofac.Module
     {

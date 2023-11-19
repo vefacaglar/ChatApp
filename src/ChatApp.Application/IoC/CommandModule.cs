@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using ChatApp.Infrastructure.Command;
+using ChatApp.Application.Command;
 using System.Reflection;
 
-namespace ChatApp.Infrastructure.IoC
+namespace ChatApp.Application.IoC
 {
     public class CommandModule : Autofac.Module
     {

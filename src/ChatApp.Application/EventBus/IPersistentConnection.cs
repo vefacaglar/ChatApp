@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Infrastructure.EventBus
+﻿namespace ChatApp.Application.EventBus
 {
     public interface IPersistentConnection<T> : IDisposable
     {

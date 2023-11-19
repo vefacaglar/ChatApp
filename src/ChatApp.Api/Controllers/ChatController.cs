@@ -2,9 +2,7 @@
 using ChatApp.Domain;
 using ChatApp.Domain.Chat.Request;
 using ChatApp.Domain.Chat.Response;
-using ChatApp.Infrastructure.Command;
-using ChatApp.Infrastructure.IoC;
-using MediatR;
+using ChatApp.Application.Command;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.Api.Controllers
@@ -25,7 +23,7 @@ namespace ChatApp.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ResultResponse<CreateChatRoomResponse>>> CreateChatRoomAsync(CreateChatRoomRequest request)
         {
-            var command = new CreateChatRoomCommand2()
+            var command = new CreateChatRoomCommand()
             {
                 Name = request.Name,
             };

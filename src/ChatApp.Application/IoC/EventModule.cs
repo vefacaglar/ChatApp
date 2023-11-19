@@ -1,7 +1,8 @@
 ﻿using Autofac;
+using ChatApp.Infrastructure;
 using System.Reflection;
 
-namespace ChatApp.Infrastructure.IoC
+namespace ChatApp.Application.IoC
 {
     public class EventModule : Autofac.Module
     {

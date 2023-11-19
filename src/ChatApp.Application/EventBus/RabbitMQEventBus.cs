@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ChatApp.Infrastructure;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Polly;
@@ -10,7 +11,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 
-namespace ChatApp.Infrastructure.EventBus
+namespace ChatApp.Application.EventBus
 {
     public class RabbitMQEventBus : IEventBus, IDisposable
     {

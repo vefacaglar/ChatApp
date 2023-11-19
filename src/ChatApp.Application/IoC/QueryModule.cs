@@ -2,7 +2,7 @@
 using ChatApp.Infrastructure.Query;
 using System.Reflection;
 
-namespace ChatApp.Infrastructure.IoC
+namespace ChatApp.Application.IoC
 {
     public class QueryModule : Autofac.Module
     {
