@@ -17,6 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ChatDbContext>(options => options.UseSqlServer(configuration["ConnectionStrings:ChatDbCommand"]));
+builder.Services.AddSingleton(configuration.Get<ChatAppConfiguration>());
 
 builder.Services.AddDomain();
 builder.Services.AddInfrastructure();
