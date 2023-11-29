@@ -1,6 +1,8 @@
 ﻿using ChatApp.Domain.Database.ChatDb.Entities;
 using ChatApp.Application.Command;
 using ChatApp.Infrastructure;
+using ChatApp.Infrastructure.Transactions;
+using Newtonsoft.Json;
 
 namespace ChatApp.Application.Chat
 {
@@ -21,12 +23,15 @@ namespace ChatApp.Application.Chat
     public class CreateChatRoomCommandHandler : ICommandHandler<CreateChatRoomCommand, CreateChatRoomCommandResult>
     {
         private readonly IUnitOfWork _uow;
+        private readonly IEventBus _eventBus;
 
         public CreateChatRoomCommandHandler(
-            IUnitOfWork uow
+            IUnitOfWork uow,
+            IEventBus eventBus
             )
         {
             _uow = uow;
+            _eventBus = eventBus;
         }
 
         public async Task<CreateChatRoomCommandResult> Handle(CreateChatRoomCommand command)
@@ -41,6 +46,12 @@ namespace ChatApp.Application.Chat
             repository.Add(newRoom);
 
             await _uow.SaveChangesAsync();
+
+            _eventBus.Publish(new EventCreatedChatRoom(new EventLog
+            {
+                Payload = JsonConvert.SerializeObject(newRoom),
+                Type = "CreatedChatRoom",
+            }));
 
             return new CreateChatRoomCommandResult
             {

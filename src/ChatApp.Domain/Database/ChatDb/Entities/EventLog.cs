@@ -6,6 +6,11 @@ namespace ChatApp.Domain.Database.ChatDb.Entities
 {
     public class EventLog : IEntity
     {
+        public EventLog()
+        {
+            CreatedAt = DateTime.Now;
+        }
+
         public long Id { get; set; }
 
         [MaxLength(200)]

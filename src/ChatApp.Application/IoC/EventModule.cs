@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using ChatApp.Application.EventHandler;
 using ChatApp.Infrastructure;
+using ChatApp.Infrastructure.Transactions;
 using System.Reflection;
 
 namespace ChatApp.Application.IoC
@@ -17,6 +19,12 @@ namespace ChatApp.Application.IoC
                 .RegisterType<EventDispatcher>()
                 .As<IEventDispatcher>()
                 .SingleInstance();
+
+            builder
+                .RegisterType<CreatedChatRoomEventHandler>()
+                .As<IEventHandler<EventCreatedChatRoom>>()
+                .InstancePerLifetimeScope();
+
         }
     }
 }

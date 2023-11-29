@@ -6,6 +6,7 @@ using ChatApp.Application;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using ChatApp.Application.IoC;
+using ChatApp.Infrastructure.Transactions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,4 +58,6 @@ app.Run();
 void ConfigureEventBus(IApplicationBuilder app)
 {
     var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+
+    eventBus.Subscribe<EventCreatedChatRoom>();
 }
