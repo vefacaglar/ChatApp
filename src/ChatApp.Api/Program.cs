@@ -1,12 +1,12 @@
 using ChatApp.Domain;
 using ChatApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using ChatApp.Domain.Database.ChatDb;
 using ChatApp.Application;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using ChatApp.Application.IoC;
 using ChatApp.Infrastructure.Transactions;
+using ChatApp.Infrastructure.Database.Command;
 
 var builder = WebApplication.CreateBuilder(args);
 

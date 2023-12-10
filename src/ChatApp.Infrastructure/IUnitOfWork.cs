@@ -1,6 +1,6 @@
 ﻿using ChatApp.Infrastructure.Repositories.Abstractions;
 using ChatApp.Infrastructure.Repositories;
-using ChatApp.Domain.Database.ChatDb;
+using ChatApp.Infrastructure.Database.Command;
 
 namespace ChatApp.Infrastructure
 {

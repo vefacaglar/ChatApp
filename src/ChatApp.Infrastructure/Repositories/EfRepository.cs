@@ -1,4 +1,4 @@
-﻿using ChatApp.Domain.Database.ChatDb;
+﻿using ChatApp.Infrastructure.Database.Command;
 using ChatApp.Infrastructure.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 

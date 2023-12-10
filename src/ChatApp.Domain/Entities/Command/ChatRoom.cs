@@ -1,7 +1,6 @@
-﻿using ChatApp.Domain.Database.Abstractions;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ChatApp.Domain.Database.ChatDb.Entities
+namespace ChatApp.Domain.Entities.Command
 {
     public class ChatRoom : IEntity
     {

@@ -12,7 +12,7 @@ namespace ChatApp.Application.EventHandler
 
         public async Task Handle(EventCreatedChatRoom e)
         {
-
+            // syn read database
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using ChatApp.Domain.Database.ChatDb.Entities;
+﻿using ChatApp.Domain.Entities;
 using ChatApp.Application.Command;
 using ChatApp.Infrastructure;
 using ChatApp.Infrastructure.Transactions;
 using Newtonsoft.Json;
+using ChatApp.Domain.Entities.Command;
 
 namespace ChatApp.Application.Chat
 {

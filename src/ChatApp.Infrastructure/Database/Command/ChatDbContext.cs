@@ -1,7 +1,7 @@
-﻿using ChatApp.Domain.Database.ChatDb.Entities;
+﻿using ChatApp.Domain.Entities.Command;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChatApp.Domain.Database.ChatDb
+namespace ChatApp.Infrastructure.Database.Command
 {
     public partial class ChatDbContext : DbContext
     {

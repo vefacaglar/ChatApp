@@ -1,4 +1,4 @@
-﻿using ChatApp.Domain.Database.ChatDb.Entities;
+﻿using ChatApp.Domain.Entities.Command;
 
 namespace ChatApp.Infrastructure.Transactions
 {
