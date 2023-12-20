@@ -12,6 +12,7 @@ namespace ChatApp.Infrastructure
             services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddTransient<IMsSqlDbConnectionFactory, MsSqlConnectionFactory>();
             services.AddTransient<IEventStore, SqlEventStore>();
+            services.AddTransient<IChatRepository, ChatRepository>();
             return services;
         }
     }

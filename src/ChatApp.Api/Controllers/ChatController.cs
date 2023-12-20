@@ -23,13 +23,18 @@ namespace ChatApp.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ResultResponse<CreateChatRoomResponse>>> CreateChatRoomAsync(CreateChatRoomRequest request)
         {
-            var command = new CreateChatRoomCommand()
-            {
-                Name = request.Name,
-            };
+            var command = new CreateChatRoomCommand(request.Name);
 
             var result = await _dispatcher.Dispatch(command);
 
+            return Ok(result);
+        }
+
+        [HttpPost("message")]
+        public async Task<ActionResult<ResultResponse<object>>> SendMessageAsync(SendMessageRequest request)
+        {
+            var command = new SendMessageCommand(request.RoomId, request.Message, request.UserName);
+            var result = await _dispatcher.Dispatch(command);
             return Ok(result);
         }
     }

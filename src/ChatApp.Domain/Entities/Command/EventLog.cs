@@ -16,7 +16,5 @@ namespace ChatApp.Domain.Entities.Command
 
         [Column(TypeName = "text")]
         public string Payload { get; set; }
-
-        public DateTime CreatedAt { get; set; }
     }
 }

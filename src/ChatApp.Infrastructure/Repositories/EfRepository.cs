@@ -17,11 +17,6 @@ namespace ChatApp.Infrastructure.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public T GetById(int id)
-        {
-            return _dbSet.Find(id);
-        }
-
         public IQueryable<T> GetAll()
         {
             return _dbSet;

@@ -9,10 +9,11 @@ namespace ChatApp.Application.Chat
 {
     public class CreateChatRoomCommand : ICommand<CreateChatRoomCommandResult>
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public CreateChatRoomCommand()
+        public CreateChatRoomCommand(string name)
         {
+            Name = name;
         }
     }
 
@@ -21,7 +22,7 @@ namespace ChatApp.Application.Chat
         public string Code { get; set; }
     }
 
-    public class CreateChatRoomCommandHandler : ICommandHandler<CreateChatRoomCommand, CreateChatRoomCommandResult>
+    public sealed class CreateChatRoomCommandHandler : ICommandHandler<CreateChatRoomCommand, CreateChatRoomCommandResult>
     {
         private readonly IUnitOfWork _uow;
         private readonly IEventBus _eventBus;

@@ -30,10 +30,7 @@ namespace ChatApp.Test.Command
         [Fact]
         public async Task CreateChatRoom_WithName_MustHaveCode()
         {
-            var command = new CreateChatRoomCommand()
-            {
-                Name = "test",
-            };
+            var command = new CreateChatRoomCommand("test");
 
             var result = await _handler.Handle(command);
 

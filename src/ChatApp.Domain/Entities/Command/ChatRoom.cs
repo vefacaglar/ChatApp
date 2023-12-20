@@ -6,14 +6,12 @@ namespace ChatApp.Domain.Entities.Command
     {
         [MaxLength(50)]
         public string Name { get; private set; }
-        public DateTime CreatedAt { get; private set; }
 
-        public ICollection<RoomMessage> Messages { get; set; }
+        public ICollection<RoomMessage> Messages { get; private set; }
 
-        public ChatRoom(string name)
+        public ChatRoom(string name) : base()
         {
-            name = name ?? throw new ArgumentNullException(nameof(name));
-            CreatedAt = DateTime.Now;
+            Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
         public void AddMessage(string userName, string message)
