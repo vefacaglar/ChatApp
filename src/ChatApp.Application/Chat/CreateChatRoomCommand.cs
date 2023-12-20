@@ -37,11 +37,7 @@ namespace ChatApp.Application.Chat
 
         public async Task<CreateChatRoomCommandResult> Handle(CreateChatRoomCommand command)
         {
-            var newRoom = new ChatRoom()
-            {
-                Name = command.Name,
-                CreatedAt = DateTime.UtcNow,
-            };
+            var newRoom = new ChatRoom(command.Name);
 
             var repository = _uow.GetRepository<ChatRoom>();
             repository.Add(newRoom);

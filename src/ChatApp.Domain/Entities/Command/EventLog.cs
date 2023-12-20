@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChatApp.Domain.Entities.Command
 {
-    public class EventLog : IEntity
+    public class EventLog : BaseEntity<long>
     {
         public EventLog()
         {
             CreatedAt = DateTime.Now;
         }
 
-        public long Id { get; set; }
 
         [MaxLength(200)]
         public string Type { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace ChatApp.Domain
 {
-    public interface IEntity
+    public interface IAggregateRoot
     {
     }
 }
