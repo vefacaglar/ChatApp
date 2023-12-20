@@ -6,7 +6,7 @@ namespace ChatApp.Infrastructure.Repositories
 {
     public class EfRepository<T> : IRepository<T> where T : class
     {
-        private readonly ChatDbContext _context;
+        protected readonly ChatDbContext _context;
         private readonly DbSet<T> _dbSet;
 
         public EfRepository(

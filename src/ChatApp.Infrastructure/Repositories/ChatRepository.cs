@@ -11,9 +11,9 @@ namespace ChatApp.Infrastructure.Repositories
         {
         }
 
-        public async Task<ChatRoom> GetByIdWithMessagesAsync(Guid id)
+        public async Task<ChatRoom> GetByIdAsync(Guid id)
         {
-            var room = await GetAll().Include(x => x.Messages).FirstOrDefaultAsync(x => x.Id == id);
+            var room = await _context.FindAsync<ChatRoom>(id);
             return room;
         }
     }

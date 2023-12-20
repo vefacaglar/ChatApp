@@ -40,7 +40,7 @@ namespace ChatApp.Application.Chat
 
         public async Task<CommandResult> Handle(SendMessageCommand command)
         {
-            var room = await _chatRepository.GetByIdWithMessagesAsync(command.RoomId);
+            var room = await _chatRepository.GetByIdAsync(command.RoomId);
             room.AddMessage(command.UserName, command.Message);
             await _uow.SaveChangesAsync();
 

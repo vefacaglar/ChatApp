@@ -12,6 +12,7 @@ namespace ChatApp.Domain.Entities.Command
         public ChatRoom(string name) : base()
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
+            Messages = new HashSet<RoomMessage>();
         }
 
         public void AddMessage(string userName, string message)
